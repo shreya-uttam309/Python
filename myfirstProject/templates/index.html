@@ -1,0 +1,13 @@
+{% comment %}
+<h1>
+    How are you doing today?
+    I am {{name}}<br> I am {{age}} years old <br> I am {{nationality}}
+</h1>
+{% endcomment %}
+<h1> Input your text below:</h1>
+<form method="POST" action="counter">
+    {% csrf_token %}
+    <textarea name="text" rows="25" cols="100"></textarea><br>
+    <input type="submit">
+</form>
+
