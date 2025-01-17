@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Student</h1>
+<form method="POST">{% csrf_token %}
+    <label>Name:</label><input type="text" name="name"><br>
+    <label>Email:</label><input type="email" name="email"><br>
+    <label>Roll Number:</label><input type="text" name="roll_number"><br>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}

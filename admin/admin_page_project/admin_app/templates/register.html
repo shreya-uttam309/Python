@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page</title>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h2 class="text-center">Register</h2>
+    <form id="registrationForm" method="post" action="{% url 'insertuser' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+        <label for="uname" class="form-label">Name</label>
+        <input type="text" class="form-control" id="uname" placeholder="Enter your name" required>
+      </div>
+      <div class="mb-3">
+        <label for="ubatch" class="form-label">Batch</label>
+        <input type="text" class="form-control" id="ubatch" placeholder="Enter your batch" required>
+      </div>
+      <div class="mb-3">
+        <label for="uroll_no" class="form-label">Roll No</label>
+        <input type="text" class="form-control" id="uroll_no" placeholder="Enter your roll number" required>
+      </div>
+      <div class="mb-3">
+        <label for="uid" class="form-label">Smart Card ID</label>
+        <input type="text" class="form-control" id="uid" placeholder="Enter your smart card ID" required>
+      </div>
+      <div class="mb-3">
+        <label for="uemail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="uemail" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label for="upass" class="form-label">Password</label>
+        <input type="password" class="form-control" id="upass" placeholder="Create a password" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+
+    <div class="mt-3 text-center">
+      <p>Already registered? <a href="login.html" class="btn btn-secondary">Log In</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Add event listener for form submission
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const uname = document.getElementById('uname').value;
+      const ubatch = document.getElementById('ubatch').value;
+      const uroll_no = document.getElementById('uroll_no').value;
+      const uid = document.getElementById('uid').value;
+      const uemail = document.getElementById('uemail').value;
+      const upass = document.getElementById('upass').value;
+
+      // Basic validation
+      if (uname && ubatch && uroll_no && uid && uemail && upass) {
+        alert('Registration successful! Redirecting to the Dashboard...');
+        window.location.href = "{% url 'home1' %}"; // Redirect to the Dashboard page
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+  </script>
+</body>
+</html>
