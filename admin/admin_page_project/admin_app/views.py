@@ -2,6 +2,7 @@
 
 # Create your views here.
 from django.shortcuts import render, redirect
+from django.db import connection
 from django.contrib import messages
 from .models import User
 from .models import Student, Notice

@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'admin_db',  # Database name
         'USER': 'root',  # Replace with your MySQL username
         'PASSWORD': 'admin1234',  # Replace with your MySQL password
-        'HOST': '127.0.0.1',  # Local database host
+        'HOST': 'localhost',  # Local database host
         'PORT': '3306',  # Default MySQL port
     }
 }
