@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Placement Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
     <!-- Header Section -->
@@ -17,8 +18,8 @@
             </div>
             <nav class="navbar">
                 <ul class="nav-links">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'aboutus' %}">About Us</a></li>
                     <li class="dropdown-parent">
                         <a href="#top-placements">Top Placements</a>
                         <ul class="dropdown">
@@ -34,7 +35,7 @@
                             <li><a href="placementg.html">Placement Guidelines</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>

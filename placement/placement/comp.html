@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Listings - Banasthali Placement Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            text-align: center;
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+        }
+        main {
+            padding: 20px;
+        }
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+        .company-card {
+            text-align: center;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .company-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .company-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .company-card a {
+            text-decoration: none;
+            color: #4caf50;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+            header {
+                padding: 15px;
+            }
+            .company-card {
+                padding: 10px;
+            }
+            .company-card a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Banasthali Placement Portal - Companies</h1>
+    </header>
+    <main>
+        <div class="company-grid">
+            <!-- Company 1 -->
+            <div class="company-card">
+                <a href="https://www.google.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Logo_2013_Google.png/800px-Logo_2013_Google.png" alt="Google">
+                    <span>Google</span>
+                </a>
+            </div>
+            <!-- Company 2 -->
+            <div class="company-card">
+                <a href="https://www.microsoft.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+                    <span>Microsoft</span>
+                </a>
+            </div>
+            <!-- Company 3 -->
+            <div class="company-card">
+                <a href="https://www.amazon.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                    <span>Amazon</span>
+                </a>
+            </div>
+            <!-- Company 4 -->
+            <div class="company-card">
+                <a href="https://www.tcs.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tata_Consultancy_Services_Logo.svg" alt="TCS">
+                    <span>TCS</span>
+                </a>
+            </div>
+            <!-- Company 5 -->
+            <div class="company-card">
+                <a href="https://www.infosys.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Infosys_logo.svg" alt="Infosys">
+                    <span>Infosys</span>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

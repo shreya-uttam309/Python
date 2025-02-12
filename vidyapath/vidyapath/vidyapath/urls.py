@@ -24,11 +24,18 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register, name='register'),  # URL for register.html
     path('contact/', views.contact, name='contact'),
+    path('aboutus/', views.aboutus, name='aboutus'),
     path('adminlogin/', views.adminlogin, name='adminlogin'),
     path('admindashboard/', views.admindashboard, name='admindashboard'),
     path('notice/', views.notice, name='notice'),
-    path('update_notice/', views.update_notice, name='update_notice'),
-    
-    path("delete/<int:id>/", views.delete, name="delete"),
+    path('notice/update_notice/<int:id>/', views.update_notice, name='update_notice'),
+    path('notice/update_notice/update_notice1/<int:id>/', views.update_notice1, name='update_notice1'),
+    path("notice/delete1/<int:id>/", views.delete1, name="delete1"),
+    path("admindashboard/delete/<int:id>/", views.delete, name="delete"),
+    path('chatbot/', views.chatbot, name='chatbot'),
+    path('placement/', views.placement, name='placement'),
+    path('learningdev/', views.learningdev, name='learningdev'),
+    path('placementg/', views.placementg, name='placementg'),
+    path('login/', views.login, name='login'),
     #path("update_notice/<int:notice_id>/", update_notice, name="update_notice"),
 ] 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Statistics</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Placement Statistics</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Company Name</th>
+                <th>Students Placed</th>
+                <th>Average Package (₹)</th>
+                <th>Highest Package (₹)</th>
+                <th>Role Offered</th>
+                <th>Recruitment Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in statistics %}
+            <tr>
+                <td>{{ stat.year }}</td>
+                <td>{{ stat.company_name }}</td>
+                <td>{{ stat.students_placed }}</td>
+                <td>{{ stat.average_package }}</td>
+                <td>{{ stat.highest_package }}</td>
+                <td>{{ stat.role_offered }}</td>
+                <td>{{ stat.recruitment_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <canvas id="placementChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('placementChart').getContext('2d');
+    const chartData = {
+        labels: [{% for stat in statistics %} '{{ stat.year }}', {% endfor %}],
+        datasets: [{
+            label: 'Students Placed',
+            data: [{% for stat in statistics %} {{ stat.students_placed }}, {% endfor %}],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    };
+    new Chart(ctx, {
+        type: 'bar',
+        data: chartData
+    });
+</script>
+</body>
+</html>

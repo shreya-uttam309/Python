@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from vidyapath_project.models import Registration
 from vidyapath_project.models import Notice
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 
+from django.contrib import messages
 
 
 
@@ -16,6 +19,9 @@ def register(request):
 def contact(request):
     return render(request,'contact.html')
 
+def aboutus(request):
+    return render(request,'aboutus.html')
+
 def adminlogin(request):
     return render(request,'adminlogin.html')
 
@@ -24,17 +30,36 @@ def admindashboard(request):
     return render(request,'admindashboard.html',{'all':all_members})
 
 def notice(request):
-    all_members=Notice.objects.all()
+    all_notices = Notice.objects.all()
+    all_batches = Registration.objects.values_list('batch', flat=True).distinct()  # Fetch distinct batch values
+
     if request.method == "POST":
-         description = request.POST["description"]
-         
-         notices=Notice(
-             description=description
-         )
-         notices.save()
-         return redirect('notice')
-    
-    return render(request,'notice.html',{'all':all_members})
+        description = request.POST.get("description")
+        batch = request.POST.get("batch")
+
+        if description and batch:
+            notice = Notice.objects.create(description=description, batch=batch)
+
+            # Fetch students from the selected batch
+            students = Registration.objects.filter(batch=batch)
+            recipient_list = [student.email for student in students]
+
+            if recipient_list:
+                send_mail(
+                    subject="New Notice Published",
+                    message=f"A new notice has been posted for Batch {batch}:\n\n{description}",
+                    from_email="shreyauttam97@gmail.com",
+                    recipient_list=recipient_list,
+                    fail_silently=False,
+                )
+                messages.success(request, f"Notice added and email sent to Batch {batch} successfully!")
+            else:
+                messages.warning(request, f"Notice added, but no students found for Batch {batch}.")
+
+            return redirect("notice")
+
+    return render(request, "notice.html", {'all': all_notices, 'all_batches': all_batches})
+
 
 def register(request):
     if request.method == 'POST':
@@ -59,11 +84,39 @@ def register(request):
 
     return render(request, 'register.html')
 
-def update_notice(request):
-    return render(request,'update_notice.html')
+def update_notice(request,id):
+    mem=Notice.objects.get(id=id)
+    return render(request,'update_notice.html',{'mem':mem})
+
+def delete1(request,id):
+    mem1=Notice.objects.get(id=id)
+    mem1.delete()
+    return redirect('notice')
 
 def delete(request,id):
-    mem=Notice.objects.get(id=id)
+    mem=Registration.objects.get(id=id)
     mem.delete()
-    return redirect("/")
+    return redirect('admindashboard')
+
+def update_notice1(request,id):
+    x=request.POST['description']
+    mem=Notice.objects.get(id=id)
+    mem.description=x
+    mem.save()
+    return redirect('notice')
+
+def chatbot(request):
+    return render(request, 'chatbot.html')
+
+def placement(request):
+    return render(request, 'placement.html')
+
+def learningdev(request):
+    return render(request, 'learningdev.html')
+
+def placementg(request):
+    return render(request, 'placementg.html')
+
+def login(request):
+    return render(request, 'login.html')
 

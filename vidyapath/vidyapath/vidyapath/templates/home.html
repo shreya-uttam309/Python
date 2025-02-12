@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
- {% load static %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +20,12 @@
             </div>
             <nav class="navbar">
                 <ul class="nav-links">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'aboutus' %}">About Us</a></li>
                     <li class="dropdown-parent">
                         <a href="#top-placements">Top Placements</a>
                         <ul class="dropdown">
-                            <li><a href="placement.html">Placement Data</a></li>
+                            <li><a href="{% url 'placement' %}">Placement Data</a></li>
                             <li><a href="#placement-statistics">Placement Statistics</a></li>
                         </ul>
                     </li>
@@ -33,8 +33,8 @@
                         <a href="#companies">Companies</a>
                         <ul class="dropdown">
                             <li><a href="partner.html">Our Partners</a></li>
-                            <li><a href="learningdev.html">Learning and Development</a></li>
-                            <li><a href="placementg.html">Placement Guidelines</a></li>
+                            <li><a href="{% url 'learningdev' %}">Learning and Development</a></li>
+                            <li><a href="{% url 'placementg' %}">Placement Guidelines</a></li>
                         </ul>
                     </li>
                     <li><a href="{% url 'contact' %}">Contact Us</a></li>
@@ -88,7 +88,9 @@
                 <div class="notice-block">
                 <ul class="notice-list">
                     {% for notice in all %}
-                    <li>Notice {{ notice.id }}: {{ notice.description }}</li>
+                    <li>Notice {{ notice.id }}: {{ notice.description }} <br>
+                        {{ notice.created_at|date:"d M Y" }}
+                    </li>
                     
                     {% endfor %}
                 </ul>
@@ -147,8 +149,12 @@
         </div>
     </section>
     
-    <script src="script.js"></script>
-    <iframe src="http://127.0.0.1:5000/static/chatbot.html" width="400" height="500" style="position: fixed; bottom: 15px; right: 15px; border: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 10px;"></iframe>
+ <!--   <script src="script.js"></script>
+    <iframe src="http://127.0.0.1:5000" width="400" height="500" 
+        style="position: fixed; bottom: 15px; right: 15px; border: none; 
+               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+</iframe>-->
+
 </body>
 
 </html>
